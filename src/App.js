@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import React, { Component, Suspense } from 'react';
+import { Route } from 'react-router-dom';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Layout from './containers/Layout/Layout';
 import Checkout from './containers/Checkout/Checkout';
+// import Orders from './containers/Orders/Orders';
+const Orders = React.lazy(() => import('./containers/Orders/Orders'));
 
 class App extends Component {
 
@@ -11,6 +13,7 @@ class App extends Component {
       <div>
         <Layout>
           <Route path="/checkout" component={Checkout} />
+          <Route path="/orders" render={() => (<Suspense fallback={<div>Loading</div>}><Orders /></Suspense>)} />
           <Route path="/" exact component={BurgerBuilder} />
         </Layout>
       </div>

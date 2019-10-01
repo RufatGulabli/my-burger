@@ -12,7 +12,7 @@ const WithErrorhandler = (WrappedComponent, axios) => {
                 this.setState({ error: null });
                 return req;
             });
-            this.respInterceptorp = axios.interceptors.response.use(resp => resp, error => this.setState({ error: error }));
+            this.respInterceptor = axios.interceptors.response.use(resp => resp, error => this.setState({ error: error }));
         }
 
         state = {
@@ -26,7 +26,7 @@ const WithErrorhandler = (WrappedComponent, axios) => {
         // To prevent memory leaks
         componentWillUnmount() {
             axios.interceptors.request.eject(this.reqInterceptor);
-            axios.interceptors.response.eject(this.respInterceptorp);
+            axios.interceptors.response.eject(this.respInterceptor);
         }
 
         render() {

@@ -4,8 +4,9 @@
     width: 80%;
 }
 
-@media (min-width: 600px) {
-    .CheckoutSummary {
-        width: 500px;
+@media (max-width: 500px) {
+    .Contact {
+        width: 450px;
+        height: 400px;
     }
 }
