@@ -8,7 +8,16 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reduxReducer from './store/reducers';
 
-const reduxStore = createStore(reduxReducer);
+// const reduxMiddleware = store => {
+//     return next => {
+//         return action => {
+//             return next(action);
+//         }
+//     }
+// }
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const reduxStore = createStore(reduxReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const app = (
     <Provider store={reduxStore}>

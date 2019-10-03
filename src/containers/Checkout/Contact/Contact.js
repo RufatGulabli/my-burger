@@ -190,7 +190,7 @@ class Contact extends Component {
                                 changed={(event) => this.onChangeHandler(event, elem.id)} />)
                     })
                 }
-                <Button btnType="Success" validForm={this.state.formIsValid}>Order</Button>
+                <Button btnType="Success" validForm={this.state.formIsValid} type="submit">Order</Button>
             </form>
         );
         if (this.state.loading) {
