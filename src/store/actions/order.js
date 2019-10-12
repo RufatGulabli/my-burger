@@ -29,10 +29,10 @@ function resetPrice() {
     }
 }
 
-export const purchaseBurger = (order, history) => {
+export const purchaseBurger = (order, history, token) => {
     return dispatch => {
         dispatch(loading());
-        axios.post('/orders.json', order)
+        axios.post(`/orders.json?auth=${token}`, order)
             .then(resp => {
                 dispatch(purchaseBurgerSuccess(resp.data.name, order))
                 history.replace('/');
@@ -57,10 +57,10 @@ function orderSuccess(orders) {
     }
 }
 
-export const getOrders = () => {
+export const getOrders = (token) => {
     return dispatch => {
         dispatch(loading());
-        axios.get('orders.json')
+        axios.get(`orders.json?auth=${token}`)
             .then(resp => {
                 const fetchedOrders = [];
                 for (let key in resp.data) {

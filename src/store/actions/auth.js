@@ -7,10 +7,11 @@ function authStart() {
     }
 }
 
-function authSuccess(token) {
+function authSuccess(idToken, userId) {
     return {
         type: actions.LOGIN_SUCCESS,
-        token: token
+        idToken: idToken,
+        userId: userId
     }
 }
 
@@ -21,8 +22,21 @@ function authFail(err) {
     }
 }
 
+const logout = () => {
+    return {
+        type: actions.LOGOUT
+    }
+}
+
+const auth_logout = (expiresIn) => {
+    return dispatch => {
+        setTimeout(() => {
+            dispatch(logout());
+        }, expiresIn * 1000);
+    }
+}
+
 export const login = (email, password, isSignUp) => {
-    console.log(isSignUp);
     return dispatch => {
         dispatch(authStart());
         let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB5j8cFJHCdD414uNcTJNuvfTXPHhGoAJs';
@@ -31,10 +45,11 @@ export const login = (email, password, isSignUp) => {
         }
         axios.post(url, { email, password, returnSecureToken: true })
             .then(resp => {
-                dispatch(authSuccess(resp.data));
+                dispatch(authSuccess(resp.data.idToken, resp.data.localId));
+                dispatch(auth_logout(resp.data.expiresIn));
             })
             .catch(err => {
-                dispatch(authFail(err));
+                dispatch(authFail(err.response.data.error));
             })
     }
 }

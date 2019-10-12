@@ -1,7 +1,9 @@
 import * as actions from '../actions/actionTypes';
 
 const initialState = {
-    idToken: '',
+    idToken: null,
+    userId: null,
+    error: null,
     loading: false
 }
 
@@ -11,19 +13,30 @@ const reducer = (state = initialState, action) => {
         case actions.LOGIN_START: {
             return {
                 ...state,
-                loading: true
+                loading: true,
+                error: null
             }
         }
         case actions.LOGIN_SUCCESS: {
             return {
-                ...state,
+                idToken: action.idToken,
+                userId: action.userId,
+                error: null,
                 loading: false
             }
         }
         case actions.LOGIN_FAIL: {
             return {
                 ...state,
+                error: action.error,
                 loading: false
+            }
+        }
+        case actions.LOGOUT: {
+            return {
+                ...state,
+                idToken: null,
+                userId: null
             }
         }
     }

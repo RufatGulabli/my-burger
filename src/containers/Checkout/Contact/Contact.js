@@ -126,7 +126,7 @@ class Contact extends Component {
             price: this.props.price.toFixed(2),
             customer
         }
-        this.props.purchaseBurger(order, this.props.history);
+        this.props.purchaseBurger(order, this.props.history, this.props.idToken);
         // this.props.history.push('/');
     }
 
@@ -206,13 +206,14 @@ const mapStateToProps = state => {
     return {
         ingredients: state.burger.ingredients,
         price: state.burger.totalPrice,
-        loading: state.order.loading
+        loading: state.order.loading,
+        idToken: state.auth.idToken
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        purchaseBurger: (order, history) => dispatch(purchaseBurger(order, history))
+        purchaseBurger: (order, history, token) => dispatch(purchaseBurger(order, history, token))
     }
 }
 

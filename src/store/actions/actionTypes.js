@@ -16,5 +16,6 @@ export const FETCH_ORDERS_FAIL = 'FETCH_ORDERS_FAIL';
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
 
 
