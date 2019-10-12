@@ -9,3 +9,7 @@ export {
     purchaseBurger,
     getOrders
 } from './order';
+
+export {
+    login
+} from './auth';
