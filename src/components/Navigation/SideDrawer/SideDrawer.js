@@ -4,8 +4,7 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import classes from './SideDrawer.module.css';
 import Backdrop from './../../UI/Backdrop/Backdrop';
 
-const SideDrawer = (props) => {
-
+const SideDrawer = props => {
     let attachedClasses = [classes.SideDrawer, classes.Close].join(' ');
     if (props.open) {
         attachedClasses = [classes.SideDrawer, classes.Open].join(' ');
@@ -19,7 +18,7 @@ const SideDrawer = (props) => {
                     <Logo />
                 </div>
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems isAuthenticated={props.isAuth} />
                 </nav>
             </div>
         </Fragment>

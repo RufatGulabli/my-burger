@@ -29,7 +29,11 @@ class BurgerBuilder extends Component {
     }
 
     purchasing = () => {
-        this.setState({ purchasing: true });
+        if (this.props.isAuthenticated) {
+            this.setState({ purchasing: true });
+        } else {
+            this.props.history.push('/login');
+        }
     }
 
     modalClosed = () => {
@@ -60,6 +64,7 @@ class BurgerBuilder extends Component {
                         price={this.props.totalPrice}
                         purchasable={this.updatePurchaseState()}
                         ordered={this.purchasing}
+                        isAuth={this.props.isAuthenticated}
                     />
                 </Fragment>
             );
@@ -91,7 +96,8 @@ const mapStateToProps = state => {
     return {
         ingredients: state.burger.ingredients,
         totalPrice: state.burger.totalPrice,
-        error: state.burger.error
+        error: state.burger.error,
+        isAuthenticated: state.auth.idToken !== null
     }
 }
 

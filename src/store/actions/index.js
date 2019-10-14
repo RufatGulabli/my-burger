@@ -11,5 +11,6 @@ export {
 } from './order';
 
 export {
-    login
+    login,
+    logout
 } from './auth';
