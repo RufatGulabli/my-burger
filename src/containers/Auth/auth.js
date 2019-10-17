@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import { connect } from 'react-redux';
-import { login } from '../../store/actions/index';
+import { login, setAuthRedirectPath } from '../../store/actions/index';
 import classes from './Auth.module.css';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
@@ -44,6 +44,12 @@ class Auth extends Component {
         },
         formIsValid: false,
         isSignUp: false,
+    }
+
+    componentDidMount() {
+        if (!this.props.buildingBurger && this.props.authRedirectPath) {
+            this.props.onSetRedirectPath();
+        }
     }
 
     checkValidity = (rules, value) => {
@@ -115,7 +121,7 @@ class Auth extends Component {
 
         let redirect = null;
         if (this.props.isAuthenticated) {
-            redirect = <Redirect to="/" />
+            redirect = <Redirect to={this.props.redirectPath} />
         }
 
         return (
@@ -140,13 +146,16 @@ const mapStateToProps = state => {
     return {
         error: state.auth.error,
         loading: state.auth.loading,
-        isAuthenticated: state.auth.idToken !== null
+        isAuthenticated: state.auth.idToken !== null,
+        buildingBurger: state.burger.building,
+        redirectPath: state.auth.authRedirectPath
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        login: (email, password, isSignUp) => dispatch(login(email, password, isSignUp))
+        login: (email, password, isSignUp) => dispatch(login(email, password, isSignUp)),
+        onSetRedirectPath: () => dispatch(setAuthRedirectPath('/'))
     }
 }
 

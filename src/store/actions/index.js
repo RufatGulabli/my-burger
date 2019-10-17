@@ -12,5 +12,7 @@ export {
 
 export {
     login,
-    logout
+    logout,
+    setAuthRedirectPath,
+    getUserDetailsFromLocalStorage
 } from './auth';

@@ -27,7 +27,7 @@ export const reducer = (state = initialState, action) => {
         case actions.PURCHASE_BURGER_FAIL: {
             return {
                 ...state,
-                loading: false
+                loading: true
             }
         }
         case actions.FETCH_ORDERS_START: {
@@ -49,6 +49,7 @@ export const reducer = (state = initialState, action) => {
                 loading: false
             }
         }
+        default: { }
     }
     return state;
 }

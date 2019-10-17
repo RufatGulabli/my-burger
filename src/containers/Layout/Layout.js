@@ -24,7 +24,7 @@ class Layout extends Component {
         return (
             <Fragment>
                 <Toolbar open={this.openSideDrawer} isAuth={this.props.isLoggedIn} />
-                <SideDrawer isAuth={this.props.isLoggedIn} open={this.state.sideDrawerToggle} toggleSideDrawer={this.closeSideDrawer} />
+                <SideDrawer isAuth={this.props.isLoggedIn} clicked={this.closeSideDrawer} open={this.state.sideDrawerToggle} toggleSideDrawer={this.closeSideDrawer} />
                 <main className={classes.content}>
                     {this.props.children}
                 </main>
