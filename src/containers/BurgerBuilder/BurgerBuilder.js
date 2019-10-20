@@ -9,7 +9,7 @@ import WithErrorhandler from '../../HOC/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
 import { addIngredient, removeIngredient, initIngredients, setAuthRedirectPath } from '../../store/actions/index';
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
     state = {
         purchasing: false,
@@ -17,7 +17,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount() {
-        this.props.initIngredients();
+        this.props.onInitIngredients();
     }
 
     updatePurchaseState() {
@@ -106,7 +106,7 @@ const mapDispatchToProps = dispatch => {
     return {
         addIngredient: (ingName) => dispatch(addIngredient(ingName)),
         removeIngredient: (ingName) => dispatch(removeIngredient(ingName)),
-        initIngredients: () => dispatch(initIngredients()),
+        onInitIngredients: () => dispatch(initIngredients()),
         onSetLoginRedirectPath: (path) => dispatch(setAuthRedirectPath(path))
     }
 }
