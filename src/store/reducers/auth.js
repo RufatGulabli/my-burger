@@ -47,10 +47,10 @@ const reducer = (state = initialState, action) => {
                 authRedirectPath: action.path
             }
         }
-        default: { }
+        default: {
+            return state;
+        }
     }
-
-    return state;
 }
 
 export default reducer;

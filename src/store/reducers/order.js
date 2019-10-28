@@ -49,9 +49,10 @@ export const reducer = (state = initialState, action) => {
                 loading: false
             }
         }
-        default: { }
+        default: {
+            return state;
+        }
     }
-    return state;
 }
 
 export default reducer;
