@@ -13,6 +13,14 @@ class Orders extends Component {
 
   render() {
     let orders = <Spinner />;
+    const style = {
+      textAlign: "center",
+      fontSize: "28px",
+      fontWeight: "600",
+      padding: "22px",
+      color: "white",
+      textShadow: "2px 2px 5px black"
+    };
     if (this.props.orders.length) {
       orders = this.props.orders.map(ord => {
         return (
@@ -24,7 +32,7 @@ class Orders extends Component {
         );
       });
     } else {
-      orders = <div>No any orders.</div>;
+      orders = <div style={style}>No any orders.</div>;
     }
     return <div>{orders}</div>;
   }
